@@ -59,45 +59,7 @@ bool test()
 
 	factory->submit("fireball", fireball);
 	factory->submit("fireslash", fireslash);
-	std::vector<int> upgrades;
-	upgrades.resize(4, 0);
-	factory->build( "fireball");
-	upgrades.resize(4, 2);
-	factory->build("fireball");
-
-	Spell		* fireball2 = (Spell*)factory->getBuiltSkill("fireball");
-	Technique    * fireslash2 = (Technique*)factory->getBuiltSkill("fireslash");
-	fireball->setSkillValue(2);
-	Spell		* fireball3 = (Spell*)factory->getBuiltSkill("fireball");
-
-	std::cout << " fireball ATK ?" << fireball2->getSkillValue() << std::endl;
-	fireball->setSkillValue(5);
-	std::cout << " fireslash ATK ?" << fireball3->getSkillValue() << std::endl;
-	std::cout << "-----------"  << std::endl;
-	fireball2->setSkillValue(3);
-	std::cout << " fireball ATK ?" << fireball2->getSkillValue() << std::endl;
-	std::cout << " fireslash ATK ?" << fireball3->getSkillValue() << std::endl;
-
-	std::cout << "-----------" << std::endl;
-	upgrades.resize(3, 1);
-	Spell* fireball4 = (Spell*)factory->build("fireball");
-	fireball4->setSkillValue(23);
-	std::cout << " fireball ATK ?" << fireball2->getSkillValue() << std::endl;
-	std::cout << " fireball4 ATK ?" << fireball4->getSkillValue() << std::endl;
-	fireball2->setSkillValue(26);
-	std::cout << " fireball ATK ?" << fireball2->getSkillValue() << std::endl;
-	std::cout << " fireball4 ATK ?" << fireball4->getSkillValue() << std::endl;
-	std::cout << "-----------" << std::endl;
-	upgrades.resize(4, 1);
-	Spell* fireball5 = (Spell*)factory->build("fireball");
-	std::cout << " fireball ATK ?" << fireball2->getSkillValue() << std::endl;
-	std::cout << " fireball4 ATK ?" << fireball4->getSkillValue() << std::endl;
-	std::cout << " fireball5 ATK ?" << fireball5->getSkillValue() << std::endl;
-
-	std::cout << " fireball ATK ?" << fireball2->getSkillValue() << std::endl;
-	std::cout << " fireball4 ATK ?" << fireball4->getSkillValue() << std::endl;
-	std::cout << " fireball5 ATK ?" << fireball5->getSkillValue() << std::endl;
-	std::cout << "-----------" << std::endl;
+	
 	return true;
 }
 
