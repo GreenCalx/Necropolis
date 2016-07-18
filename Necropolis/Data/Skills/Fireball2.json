@@ -1,17 +1,17 @@
 {
-    "Aspect": 2,
+    "Aspect": 0,
     "CastSpeed": 1,
     "ElementalAttributes": {
+        "AIR": 0,
         "DARK": 5,
         "EARTH": 15,
         "FIRE": 80,
         "LIGHT": 0,
-        "WATER": 0,
-        "WIND": 0
+        "WATER": 0
     },
-    "ListOfSkillEffects": {
-        "Effect_1": "Ignite"
-    },
+    "ListOfSkillEffects": [
+        "IGNITE"
+    ],
     "MPCost": 3,
     "SkillName": "Fireball",
     "SkillNature": "Spell",

@@ -1,5 +1,6 @@
 #pragma once
-class SkillEffect
+#include "Token.h"
+class SkillEffect : public Token
 {
 public:
 	SkillEffect();

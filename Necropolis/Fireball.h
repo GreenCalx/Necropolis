@@ -10,7 +10,7 @@ class Fireball :
 public:
 
 	Fireball() : Spell() {};
-	Fireball(int mpCost, ElementalArray elementalAttributes, double skillValue, ASPECT aspect, std::vector<Token> * ListOfSkillEffects, TARGET target, double castSpeed, std::vector<int>* upgrades)
+	Fireball(int mpCost, ElementalArray elementalAttributes, double skillValue, ASPECT aspect, std::vector<Token*>  ListOfSkillEffects, TARGET target, double castSpeed, std::vector<int>* upgrades)
 		: Spell(mpCost, elementalAttributes, skillValue, aspect, ListOfSkillEffects, target, castSpeed, upgrades)
 	{};
 	~Fireball();

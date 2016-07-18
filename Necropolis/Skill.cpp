@@ -3,8 +3,8 @@
 Skill::~Skill()
 {
 
-	if ( _ListOfSkillEffects!=NULL )
-		delete[] _ListOfSkillEffects;
+	// Leak on the SkillTokens very likely.
+
 	if ( _Upgrades!=NULL )
 		delete[] _Upgrades;
 

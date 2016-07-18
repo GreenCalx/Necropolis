@@ -3,6 +3,7 @@
 #include "SkillPrototype.h"
 #include "Token.h"
 #include "ElementalArray.h"
+#include "SkillEffect.h"
 
 class Skill : public SkillPrototype<Skill>
 {
@@ -28,7 +29,7 @@ public:
 		: _MPCost(0), _ElementalAttributes(ElementalArray()), _SkillValue(0), _Aspect(MODIFICATOR), _ListOfSkillEffects(0), _Target(SELF), _CastSpeed(0.1), _Upgrades(0) 
 		{};
 
-	Skill(int mpCost, ElementalArray elementalAttributes, double skillValue, ASPECT aspect, std::vector<Token> * ListOfSkillEffects, TARGET target, double castSpeed, std::vector<int>* upgrades)
+	Skill(int mpCost, ElementalArray elementalAttributes, double skillValue, ASPECT aspect, std::vector<Token*>  ListOfSkillEffects, TARGET target, double castSpeed, std::vector<int>* upgrades)
 		: _MPCost(mpCost), _ElementalAttributes(elementalAttributes), _SkillValue(skillValue), _Aspect(aspect), _ListOfSkillEffects(ListOfSkillEffects), _Target(target), _CastSpeed(castSpeed), _Upgrades(upgrades)
 		{} ;
 	
@@ -56,8 +57,8 @@ public:
 	void	setAspect(ASPECT Aspect)	{ _Aspect = Aspect; }
 	void	setAspect(int Aspect) { if (Aspect<0 || Aspect>4) return; _Aspect = static_cast<ASPECT>(Aspect); }
 
-	std::vector<Token>*	getListOfSkillEffects()											{ return _ListOfSkillEffects; }
-	void				setListOfSkillEffects(std::vector<Token> * ListOfSkillEffects)	{ _ListOfSkillEffects = ListOfSkillEffects; }
+	std::vector<Token*>	getListOfSkillEffects()											{ return _ListOfSkillEffects; }
+	void				setListOfSkillEffects(std::vector<Token*>  ListOfSkillEffects)	{ _ListOfSkillEffects = ListOfSkillEffects; }
 
 	TARGET	getTarget()					{ return _Target; }
 	void	setTarget(TARGET Target)	{ _Target = Target; }
@@ -76,7 +77,7 @@ protected:
 	ElementalArray				_ElementalAttributes;
 	double						_SkillValue;			// Value that can be use to define damage/heal
 	ASPECT						_Aspect; //
-	std::vector<Token>		*	_ListOfSkillEffects;
+	std::vector<Token*>			_ListOfSkillEffects;
 	TARGET						_Target;
 	double						_CastSpeed;
 	std::vector<int>		*	_Upgrades;

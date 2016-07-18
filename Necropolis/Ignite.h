@@ -1,5 +1,6 @@
 #pragma once
 #include "SkillEffect.h"
+
 class Ignite :
 	public SkillEffect
 {

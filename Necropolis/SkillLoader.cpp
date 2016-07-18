@@ -4,7 +4,14 @@
 
 #define	 SKILLPATH	"Data/Skills/"
 
+// SKill Effects : Temporary :: Need a factory ASAP
+#include "Ignite.h"
+// ---------------------------------------------
 
+
+// ------------------------------------
+// load
+// ------------------------------------
 int SkillLoader::load(std::string fileName, json & oFile)
 {
 	if (fileName.empty())
@@ -41,6 +48,10 @@ int SkillLoader::load(std::string fileName, json & oFile)
 	return 1;
 }
 
+
+// ------------------------------------
+// save
+// ------------------------------------
 int SkillLoader::save(std::string fileName, json fileToSave, json & oFile)
 {
 	if (fileName.empty()) 
@@ -65,6 +76,10 @@ int SkillLoader::save(std::string fileName, json fileToSave, json & oFile)
 	return 1;
 }
 
+
+// ------------------------------------
+// loadSkill
+// ------------------------------------
 int SkillLoader::loadSkill(std::string skillName, Skill *& opSkill)
 {
 
@@ -143,12 +158,45 @@ int SkillLoader::loadSkill(std::string skillName, Skill *& opSkill)
 		}
 		else if (key.compare("ElementalAttributes") == 0)
 		{
-			//ElementalArray value = it.value();
+			ElementalArray elems = ElementalArray();
+			json value = it.value();
+			for (json::iterator iter = value.begin(); iter != value.end(); ++iter)
+			{
+				std::string elementalLabel	= iter.key().c_str();
+				int elementalValue			= iter.value();
 
+				if (elementalLabel.compare("EARTH") == 0)
+					elems.setEarth(elementalValue);
+				else if (elementalLabel.compare("AIR") == 0)
+					elems.setAir(elementalValue);
+				else if (elementalLabel.compare("FIRE") == 0)
+					elems.setFire(elementalValue);
+				else if (elementalLabel.compare("WATER") == 0)
+					elems.setWater(elementalValue);
+				else if (elementalLabel.compare("LIGHT") == 0)
+					elems.setLight(elementalValue);
+				else if (elementalLabel.compare("DARK") == 0)
+					elems.setDark(elementalValue);
+				else // Unexpected
+					std::cerr << " Unexpected elemental attribute during the skill deserialization " << std::endl;
+			}	
+			skill->setElementalAttributes(elems);
 		}
 		else if (key.compare("ListOfSkillEffects") == 0)
 		{
+			// Load strings
+			std::vector<std::string> effects;
+			json value = it.value();
+			for (json::iterator iter = value.begin(); iter != value.end(); ++iter)
+				effects.push_back(*iter);
+			
 
+			// Transform in tokens
+			std::vector<Token*> skillEffects = std::vector<Token*>();
+			if (tokenizeSkillEffects(effects, skillEffects) < 0)
+				return -1; // Todo : Handle it better later on.
+
+			skill->setListOfSkillEffects(skillEffects);
 		}
 		else if (key.compare("Upgrades") == 0)
 		{
@@ -163,6 +211,38 @@ int SkillLoader::loadSkill(std::string skillName, Skill *& opSkill)
 	opSkill = skill;
 	return 1;
 }
+
+// ------------------------------------
+// tokenizeSkillEffects
+// ------------------------------------
+int SkillLoader::tokenizeSkillEffects(std::vector<std::string> iEffects, std::vector<Token*>& oEffects)
+{
+	int n_effects = iEffects.size();
+	if (n_effects <= 0)
+		return 1;
+
+	std::vector<Token*> localListOfEffects = std::vector<Token*>();
+	for (int i_effect = 0; i_effect < n_effects; ++i_effect)
+	{
+		std::string currentEffect = iEffects.at(i_effect);
+		if (currentEffect.empty()) 
+			continue;
+		// INSERT LIST OF EXISTING EFFECTS
+		Token * newEffect = NULL;
+		if (currentEffect.compare("IGNITE") == 0)
+			newEffect = new Ignite();
+
+		localListOfEffects.push_back(newEffect);
+		// -----------------------------------
+	}
+
+
+	if (localListOfEffects.size() > 0)
+		oEffects = localListOfEffects;
+
+	return 1;
+}
+
 
 SkillLoader::SkillLoader()
 {

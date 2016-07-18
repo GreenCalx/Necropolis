@@ -1,13 +1,11 @@
 {
   "SkillNature" :  "Spell",
   "SkillName": "Fireball",
-  "ListOfSkillEffects": {
-    "Effect_1": "Ignite"
-  },
+  "ListOfSkillEffects": ["IGNITE"],
   "MPCost": 3,
   "ElementalAttributes": {
     "EARTH": 15,
-    "WIND": 0,
+    "AIR": 0,
     "FIRE": 80,
     "WATER": 0,
     "LIGHT": 0,
