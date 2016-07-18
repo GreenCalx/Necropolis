@@ -10,11 +10,16 @@ public:
 	
 	// Skill aspects % defines its archetype
 	enum ASPECT{
-		OFFENSIVE, DEFENSIVE, MOVEMENT, MODIFICATOR, CONTROL
+		OFFENSIVE	= 0,
+		DEFENSIVE	= 1,
+		MOVEMENT	= 2,
+		MODIFICATOR = 3,
+		CONTROL		= 4
 	};
 	// Target of the Skill % will Probably be needed for GUI stuff
 	enum TARGET {
-		SELF, OTHER
+		SELF	= 0,
+		OTHER	= 1
 	};
 
 	// Constructors
@@ -35,6 +40,9 @@ public:
 
 	// mutators
 	// ---------------------
+	std::string		getSkillName() { return _SkillName; }
+	void			setSkillName(std::string SkillName) { _SkillName = SkillName; }
+
 	 int		getMPCost()				{ return _MPCost; }
 	 void	setMPCost(int mp)		{ _MPCost = mp; }
 
@@ -46,12 +54,14 @@ public:
 
 	ASPECT	getAspect()					{ return _Aspect; }
 	void	setAspect(ASPECT Aspect)	{ _Aspect = Aspect; }
+	void	setAspect(int Aspect) { if (Aspect<0 || Aspect>4) return; _Aspect = static_cast<ASPECT>(Aspect); }
 
 	std::vector<Token>*	getListOfSkillEffects()											{ return _ListOfSkillEffects; }
 	void				setListOfSkillEffects(std::vector<Token> * ListOfSkillEffects)	{ _ListOfSkillEffects = ListOfSkillEffects; }
 
 	TARGET	getTarget()					{ return _Target; }
 	void	setTarget(TARGET Target)	{ _Target = Target; }
+	void	setTarget(int Target) { if (Target<0 || Target>1) return; _Target = static_cast<TARGET>(Target); }
 
 	double	getCastSpeed()					{ return _CastSpeed; }
 	void	setCastSpeed(double CastSpeed)	{ _CastSpeed = CastSpeed; }
@@ -61,6 +71,7 @@ public:
 
 
 protected:
+	std::string					_SkillName;
 	int							_MPCost;
 	ElementalArray				_ElementalAttributes;
 	double						_SkillValue;			// Value that can be use to define damage/heal

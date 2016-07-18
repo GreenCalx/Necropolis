@@ -11,6 +11,7 @@
 #include "Spell.h"
 #include "Technique.h"
 #include "SkillFactory.h"
+#include "SkillLoader.h"
 bool test();
 // -------------------
 
@@ -59,7 +60,17 @@ bool test()
 
 	factory->submit("fireball", fireball);
 	factory->submit("fireslash", fireslash);
-	
+
+	json FILE_A, FILE_B;
+	SkillLoader::load("Fireball", FILE_A)  ;
+	std::cout << FILE_A.dump(4) << std::endl;
+	SkillLoader::save("Fireball2", FILE_A, FILE_B) ;
+	SkillLoader::load("Fireball2", FILE_B)  ;
+	std::cout << FILE_B.dump(4) << std::endl;
+
+	Skill * test = NULL;
+	SkillLoader::loadSkill("Fireball", test);
+	std::cout << " OK " << std::endl;
 	return true;
 }
 
