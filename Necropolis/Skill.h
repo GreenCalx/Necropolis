@@ -81,5 +81,9 @@ protected:
 	TARGET						_Target;
 	double						_CastSpeed;
 	std::vector<int>		*	_Upgrades;
+	
+	// Mastery related attributes
+	int							_CurrentMastery;
+	
 };
 

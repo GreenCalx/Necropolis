@@ -1,0 +1,93 @@
+{
+  "1": {
+
+    "MasteryCeiling": "100",
+    "MasteryObjective": "KILLS",
+
+    "1": {
+      "Upgrade Name": "Radius Upgrade",
+      "Radius": "2"
+    },
+
+    "2": {
+      "Upgrade Name": "Damage Upgrade",
+      "SkillValue": "5"
+    },
+
+    "3": {
+      "Upgrade Name": "Mana Cost Upgrade",
+      "MPCost": "1"
+    }
+
+  },
+
+
+  "2": {
+
+    "MasteryCeiling": "200",
+    "MasteryObjective": "KILLS",
+
+    "1": {
+      "Upgrade Name": "Radius Upgrade II",
+      "Radius": "2"
+    },
+
+    "2": {
+      "Upgrade Name": "Damage Upgrade II",
+      "SkillValue": "5"
+    },
+
+    "3": {
+      "Upgrade Name": "Mana Cost Upgrade II",
+      "MPCost": "1"
+    }
+
+  },
+
+
+  "3": {
+
+    "MasteryCeiling": "300",
+    "MasteryObjective": "KILLS",
+
+    "1": {
+      "Upgrade Name": "Radius Upgrade III",
+      "Radius": "2"
+    },
+
+    "2": {
+      "Upgrade Name": "Damage Upgrade III",
+      "SkillValue": "5"
+    },
+
+    "3": {
+      "Upgrade Name": "Mana Cost Upgrade III",
+      "MPCost": "1"
+    }
+
+  },
+
+
+  "4": {
+
+    "MasteryCeiling": "400",
+    "MasteryObjective": "KILLS",
+
+    "1": {
+      "Upgrade Name": "Radius Upgrade IV",
+      "Radius": "2"
+    },
+
+    "2": {
+      "Upgrade Name": "Damage Upgrade IV",
+      "SkillValue": "5"
+    },
+
+    "3": {
+      "Upgrade Name": "Mana Cost Upgrade IV",
+      "MPCost": "1"
+    }
+
+  }
+
+}

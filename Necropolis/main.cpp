@@ -8,10 +8,13 @@
 #include <iostream>
 
 // -------------------
+#include "Defines.h"
+
 #include "Spell.h"
 #include "Technique.h"
 #include "SkillFactory.h"
 #include "SkillLoader.h"
+
 bool test();
 // -------------------
 

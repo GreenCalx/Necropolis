@@ -2,7 +2,7 @@
   "SkillNature" :  "Spell",
   "SkillName": "Fireball",
   "ListOfSkillEffects": ["IGNITE"],
-  "MPCost": 3,
+  "MPCost": 5,
   "ElementalAttributes": {
     "EARTH": 15,
     "AIR": 0,
@@ -16,6 +16,9 @@
   "Target": 1,
   "CastSpeed": 1.0,
   "Upgrades": {
-    "upgr1": "test"
+    "Name": "FIREBALL_UPGRADES",
+    "CurrentMastery": 257,
+    "UpgradeLevel": 3,
+    "UpgradeSockets": [2,1,3,0]
   }
 }
