@@ -202,6 +202,7 @@ int SkillLoader::loadSkill(std::string skillName, Skill *& opSkill)
 			int currentMastery = 0;
 			int upgradeLevel = 0;
 			std::vector<int> upgradeSockets;
+			std::vector<int> upgradeCeilings;
 
 			for (json::iterator iter = value.begin(); iter != value.end(); ++iter)
 			{
@@ -221,12 +222,13 @@ int SkillLoader::loadSkill(std::string skillName, Skill *& opSkill)
 					std::vector<int> localUpgradeSockets = iter.value();
 					upgradeSockets = localUpgradeSockets;
 				}
+
 				else // Unexpected
 					std::cerr << " Unexpected upgrade attribute during the skill deserialization " << std::endl;
 			}
 
 			// Now load the actual upgrade
-			UpgradeBundle * upgradeBundle = new UpgradeBundle();
+			Upgrade * upgradeBundle = new Upgrade();
 			if ( 0 > loadUpgrade(upgradeName, currentMastery, upgradeLevel, upgradeSockets, upgradeBundle) )
 			{
 				std::cerr << "SL001 : Failed to load an upgrade" << std::endl;
@@ -243,12 +245,17 @@ int SkillLoader::loadSkill(std::string skillName, Skill *& opSkill)
 	return S_OK;
 }
 
-int SkillLoader::loadUpgrade(std::string upgradeName, const int currentMastery, const int upgradeLevel, std::vector<int> upgradeSockets, UpgradeBundle *& upgradeBundle)
+int SkillLoader::loadUpgrade(std::string upgradeName, const int currentMastery, const int upgradeLevel, std::vector<int> upgradeSockets, Upgrade *& upgradeBundle)
 {
-	if (upgradeName.empty())
-		return 0;
+	if ( upgradeName.empty() || upgradeSockets.empty() )
+		return E_INVALIDARG;
+
 	if (NULL == upgradeBundle)
-		upgradeBundle = new UpgradeBundle();
+		upgradeBundle = new Upgrade();
+
+	if (upgradeLevel == 0)
+		return S_FALSE;
+
 
 	// Load the skill
 	json File = NULL;
@@ -268,7 +275,7 @@ int SkillLoader::loadUpgrade(std::string upgradeName, const int currentMastery, 
 	int n_upgradeSockets = upgradeSockets.size();
 	std::vector<std::string> s_upgradeSockets;
 	s_upgradeSockets.resize(n_upgradeSockets);
-	for (int i(0); i <= n_upgradeSockets; ++i)
+	for (int i(0); i < n_upgradeSockets; ++i)
 	{
 		ss << upgradeSockets.at(i);
 		s_upgradeSockets.at(i) = ss.str();
@@ -276,16 +283,76 @@ int SkillLoader::loadUpgrade(std::string upgradeName, const int currentMastery, 
 
 
 	// Create the corresponding upgrade structure
+	std::vector<int> upgradeCeilings;
 	std::string key;
-	UpgradeBundle  * upgrades = NULL;
+	Upgrade  * upgrade = NULL;
+	upgrade = new Upgrade();
+	int currentUpgradeSlot = 0;
+	int currentLabelSocket = 0;
+	std::string::size_type sz;
+
 	for (json::iterator it = File.begin(); it != File.end(); ++it)
 	{
 		std::string upgradeLabel = it.key().c_str();
-		if ( upgradeLabel.compare("CurrentMastery") == 0 )
+		currentUpgradeSlot = std::stoi(upgradeLabel, &sz);
+		if (currentUpgradeSlot < 0)
+		{
+			std::cerr << "SL002 : currentUpgradeSLot is inferior to 0 !" << std::endl;
+			continue;
+		}
+		json upgradeLayer = it.value();
 
+		for (json::iterator layer_it = upgradeLayer.begin(); layer_it != upgradeLayer.end(); ++layer_it)
+		{
 
-	}
+			std::string upgradeInnerLabel = layer_it.key().c_str();
 
+			if (upgradeLabel.compare("MasteryCeiling") == 0)
+			{
+				// ..
+			}
+			else if (upgradeLabel.compare("MasteryObjective") == 0)
+			{
+				// ..
+			}
+			else
+			{
+				currentLabelSocket = std::stoi(upgradeLabel, &sz);
+				if (currentUpgradeSlot < 0)
+				{
+					std::cerr << "SL003 : currentLabelSocket is inferior to 0 !" << std::endl;
+					continue;
+				}
+
+				json upgradeSocketValue = layer_it.value();
+				std::string upgradeInnerLabel;
+
+				for (json::iterator socket_layer_it = upgradeSocketValue.begin(); socket_layer_it != upgradeSocketValue.end(); ++socket_layer_it)
+				{
+					upgradeInnerLabel = socket_layer_it.key().c_str();
+					std::string upgradeInnerValue = socket_layer_it.value();
+					if ( upgradeInnerLabel.compare("Description") == 0 )
+					{
+						upgrade->description = upgradeInnerValue;
+					}
+					else if ( !upgradeInnerLabel.empty() )
+					{
+						// Any upgrade item
+						if (S_OK != upgrade->setUpgradeValue(upgradeInnerLabel, upgradeInnerValue))
+						{
+							std::cerr << " SL003 : An error occured while setting the upgrade" << std::endl;
+						}
+					}
+					else
+					{
+						// ..
+					}
+				} // EoL Socket
+			}
+		} // EoL Inner Upgrade
+	} // EoL Upgrade File
+
+	upgradeBundle = upgrade;
 	return S_OK;
 }
 

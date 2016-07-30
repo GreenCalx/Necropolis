@@ -19,6 +19,6 @@
     "Name": "FIREBALL_UPGRADES",
     "CurrentMastery": 257,
     "UpgradeLevel": 3,
-    "UpgradeSockets": [2,1,3,0]
+    "UpgradeSockets": [ 2, 1, 3, 0 ]
   }
 }

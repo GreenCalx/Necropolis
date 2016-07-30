@@ -12,12 +12,20 @@
     "ListOfSkillEffects": [
         "IGNITE"
     ],
-    "MPCost": 3,
+    "MPCost": 5,
     "SkillName": "Fireball",
     "SkillNature": "Spell",
     "SkillValue": 10,
     "Target": 1,
     "Upgrades": {
-        "upgr1": "test"
+        "CurrentMastery": 257,
+        "Name": "FIREBALL_UPGRADES",
+        "UpgradeLevel": 3,
+        "UpgradeSockets": [
+            2,
+            1,
+            3,
+            0
+        ]
     }
 }

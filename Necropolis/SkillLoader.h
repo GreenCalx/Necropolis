@@ -33,7 +33,7 @@ public:
 
 	static int loadSkill(std::string skillName, Skill *& opSKill);
 
-	static int loadUpgrade(std::string upgradeName, const int currentMastery, const int upgradeLevel, std::vector<int> upgradeSockets, UpgradeBundle *& upgradeBundle);
+	static int loadUpgrade(std::string upgradeName, const int currentMastery, const int upgradeLevel, std::vector<int> upgradeSockets, Upgrade *& oUpgradeBundle);
 
 	static int tokenizeSkillEffects(std::vector<std::string> iEffects, std::vector<Token*> & oEffects);
 

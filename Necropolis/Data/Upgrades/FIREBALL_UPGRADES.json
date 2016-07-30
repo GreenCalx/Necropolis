@@ -5,17 +5,17 @@
     "MasteryObjective": "KILLS",
 
     "1": {
-      "Upgrade Name": "Radius Upgrade",
-      "Radius": "2"
+      "Description": "Radius Upgrade",
+      "Radius": "2.5"
     },
 
     "2": {
-      "Upgrade Name": "Damage Upgrade",
+      "Description": "Damage Upgrade",
       "SkillValue": "5"
     },
 
     "3": {
-      "Upgrade Name": "Mana Cost Upgrade",
+      "Description": "Mana Cost Upgrade",
       "MPCost": "1"
     }
 
@@ -28,17 +28,17 @@
     "MasteryObjective": "KILLS",
 
     "1": {
-      "Upgrade Name": "Radius Upgrade II",
+      "Description": "Radius Upgrade II",
       "Radius": "2"
     },
 
     "2": {
-      "Upgrade Name": "Damage Upgrade II",
+      "Description": "Damage Upgrade II",
       "SkillValue": "5"
     },
 
     "3": {
-      "Upgrade Name": "Mana Cost Upgrade II",
+      "Description": "Mana Cost Upgrade II",
       "MPCost": "1"
     }
 
@@ -51,17 +51,17 @@
     "MasteryObjective": "KILLS",
 
     "1": {
-      "Upgrade Name": "Radius Upgrade III",
+      "Description": "Radius Upgrade III",
       "Radius": "2"
     },
 
     "2": {
-      "Upgrade Name": "Damage Upgrade III",
+      "Description": "Damage Upgrade III",
       "SkillValue": "5"
     },
 
     "3": {
-      "Upgrade Name": "Mana Cost Upgrade III",
+      "Description": "Mana Cost Upgrade III",
       "MPCost": "1"
     }
 
@@ -74,17 +74,17 @@
     "MasteryObjective": "KILLS",
 
     "1": {
-      "Upgrade Name": "Radius Upgrade IV",
+      "Description": "Radius Upgrade IV",
       "Radius": "2"
     },
 
     "2": {
-      "Upgrade Name": "Damage Upgrade IV",
+      "Description": "Damage Upgrade IV",
       "SkillValue": "5"
     },
 
     "3": {
-      "Upgrade Name": "Mana Cost Upgrade IV",
+      "Description": "Mana Cost Upgrade IV",
       "MPCost": "1"
     }
 

@@ -8,28 +8,30 @@ class Skill;
 class SkillEffect;
 
 // Bundle of upgrades
-class UpgradeBundle {
-	
-public:
-	UpgradeBundle() : _Upgrades(std::map<Upgrade, std::string>()), _pAttachedSkill(NULL) 
-	{}
-	UpgradeBundle(std::map<Upgrade, std::string> iUpgrades) : _Upgrades(iUpgrades), _pAttachedSkill(NULL)
-	{}
-	UpgradeBundle(Skill* ipAttachedSkill, std::map<Upgrade, std::string> iUpgrades) : _Upgrades(iUpgrades), _pAttachedSkill(ipAttachedSkill)
-	{}
-
-	Skill*	getAttachedSkill(void) { return _pAttachedSkill; }
-	void	setAttachedSkill(Skill* ipAttachedSkill) { _pAttachedSkill = ipAttachedSkill; }
-	std::map<Upgrade, std::string>	getUpgrades(void) { return _Upgrades; }
-	void	setUpgrades(std::map<Upgrade, std::string> iUpgrades) { _Upgrades = iUpgrades; }
-
-private:
-	Skill							*	_pAttachedSkill;
-	std::map<Upgrade, std::string>		_Upgrades;
-
-};
+//class UpgradeBundle {
+//	
+//public:
+//	UpgradeBundle() : _Upgrades(std::map<Upgrade, std::string>()), _pAttachedSkill(NULL) 
+//	{}
+//	UpgradeBundle(std::map<Upgrade, std::string> iUpgrades) : _Upgrades(iUpgrades), _pAttachedSkill(NULL)
+//	{}
+//	UpgradeBundle(Skill* ipAttachedSkill, std::map<Upgrade, std::string> iUpgrades) : _Upgrades(iUpgrades), _pAttachedSkill(ipAttachedSkill)
+//	{}
+//
+//	Skill*	getAttachedSkill(void) { return _pAttachedSkill; }
+//	void	setAttachedSkill(Skill* ipAttachedSkill) { _pAttachedSkill = ipAttachedSkill; }
+//	std::map<Upgrade, std::string>	getUpgrades(void) { return _Upgrades; }
+//	void	setUpgrades(std::map<Upgrade, std::string> iUpgrades) { _Upgrades = iUpgrades; }
+//
+//private:
+//	Skill							*	_pAttachedSkill;
+//	std::map<Upgrade, std::string>		_Upgrades;
+//
+//};
 
 struct Upgrade {
+
+	std::string description;
 
 	// Upgrade : physics
 	double radius = 0.;
@@ -45,5 +47,10 @@ struct Upgrade {
 	// UpgradeMisc :
 	unsigned int numberOfProjectiles = 0;
 	std::vector<SkillEffect> skillEffects = std::vector<SkillEffect>();
+
+	Upgrade() {}
+	~Upgrade() { skillEffects.clear(); /* ensure smart pointer dies.. */ }
+
+	int setUpgradeValue(std::string valueLabel, std::string value);
 
 };
